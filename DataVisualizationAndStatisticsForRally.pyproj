@@ -11,6 +11,7 @@
     <OutputPath>.</OutputPath>
     <Name>DataVisualizationAndStatisticsForRally</Name>
     <RootNamespace>DataVisualizationAndStatisticsForRally</RootNamespace>
+    <SuppressConfigureTestFrameworkPrompt>true</SuppressConfigureTestFrameworkPrompt>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -23,6 +24,9 @@
   <ItemGroup>
     <Compile Include="CommonClass.py" />
     <Compile Include="draft.py" />
+    <Compile Include="Draft\SaveTestCasesIntoFile.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="FindCasesInFolder.py" />
     <Compile Include="Graph.py" />
     <Compile Include="GraphActions.py" />
@@ -74,6 +78,7 @@
   <ItemGroup>
     <Folder Include="Documentation\" />
     <Folder Include="GUI\" />
+    <Folder Include="Draft\" />
     <Folder Include="Visualization\" />
     <Folder Include="Project\" />
     <Folder Include="Visualization\UserDataObjects\" />
