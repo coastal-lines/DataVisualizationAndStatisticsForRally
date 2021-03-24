@@ -44,10 +44,12 @@ class CommonClass():
         self.rally = RallyInstance(self.user).rally
 
     def startSession(self, workspace, project, folder):
-        self.rally.setWorkspace(workspace)
-        self.rally.setProject(project)
-        self.rootFolder = RallyFolder(self.rally ,'FormattedID = "' + folder + '"').testFolder
-        x = 100
+        try:
+            self.rally.setWorkspace(workspace)
+            self.rally.setProject(project)
+            self.rootFolder = RallyFolder(self.rally ,'FormattedID = "' + folder + '"').testFolder
+        except:
+            print("Please login before")
 
     def getRootFolderName(self):
         return self.rootFolder.Name
