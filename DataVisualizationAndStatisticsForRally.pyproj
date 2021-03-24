@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>1286b2fe-c399-4236-9d98-9e4c5142e89e</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>MainClass.py</StartupFile>
+    <StartupFile>Draft\TKInterCanvas.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -23,35 +23,15 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="CommonClass.py" />
-    <Compile Include="draft.py" />
+    <Compile Include="Draft\draft.py" />
     <Compile Include="Draft\SaveTestCasesIntoFile.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="FindCasesInFolder.py" />
-    <Compile Include="Graph.py" />
-    <Compile Include="GraphActions.py" />
-    <Compile Include="GraphActions2.py" />
-    <Compile Include="gui.py" />
-    <Compile Include="GUI2.py" />
-    <Compile Include="gui3.py" />
-    <Compile Include="gui4.py" />
-    <Compile Include="gui5.py" />
+    <Compile Include="Draft\FindCasesInFolder.py" />
     <Compile Include="GUI\UserInterface.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="GUI\UserInterface___.py">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="MainClass.py" />
-    <Compile Include="module1.py" />
-    <Compile Include="module2.py" />
-    <Compile Include="module3.py" />
-    <Compile Include="module4.py" />
-    <Compile Include="module5.py" />
-    <Compile Include="module6.py" />
-    <Compile Include="module7.py" />
-    <Compile Include="Pandas1.py" />
-    <Compile Include="PandasSeries.py" />
     <Compile Include="Project\RallyCommonObject.py" />
     <Compile Include="Project\RallyFolder.py" />
     <Compile Include="Project\RallyInstance.py" />
@@ -59,16 +39,9 @@
     <Compile Include="Project\RallyTestCaseSteps.py" />
     <Compile Include="Project\RallyWorkspace.py" />
     <Compile Include="Project\UserCredential.py" />
-    <Compile Include="Seaborn.py" />
-    <Compile Include="Seaborn2.py" />
-    <Compile Include="Seaborn3.py" />
     <Compile Include="SpecificRequest.py" />
-    <Compile Include="Tabs - Copy.py" />
-    <Compile Include="Tabs.py" />
-    <Compile Include="TempMethods.py" />
-    <Compile Include="TempOOP.py" />
-    <Compile Include="TKInterCanvas - Copy.py" />
-    <Compile Include="TKInterCanvas.py" />
+    <Compile Include="Draft\TempOOP.py" />
+    <Compile Include="Draft\TKInterCanvas.py" />
     <Compile Include="Visualization\DataFrameActions.py" />
     <Compile Include="Visualization\TestsAndFoldersActions.py" />
     <Compile Include="Visualization\UserDataObjects\BarClass.py" />
