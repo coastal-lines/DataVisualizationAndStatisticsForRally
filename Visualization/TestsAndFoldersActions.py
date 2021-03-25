@@ -1,7 +1,7 @@
 from Visualization.UserDataObjects.BarClass import BarClass
 from Visualization.UserDataObjects.UserTestFromRequest import UserTestFromRequest
 from Visualization.UserDataObjects.UserTestFromRequest import UserTestFromRequest
-from Project.RallyFolder import RallyFolder
+from Project.RallyTestCase import TestCase
 from pyral import Rally, rallyWorkset
 
 class TestsAndFoldersActions():
@@ -9,17 +9,45 @@ class TestsAndFoldersActions():
     allTC = []
     listTC = []
 
-    #def __init__(self, allTestCasesInFolderIncludeSubfolders, rootFolder):
-     #   self.rootFolder = rootFolder
+    @staticmethod
+    def extractTestCasesFromFoldersAndSubfolders(rootFolder):
+        listTestCases = []
+
+        if len(rootFolder.TestCases) > 0:
+            TestsAndFoldersActions.extractTestCasesFromRootFolder(rootFolder)
+            TestsAndFoldersActions.allTestCasesInFolderIncludeSubfolders.clear()
+
+        if len(rootFolder.Children) > 0:
+            for folder in rootFolder.Children:
+                TestsAndFoldersActions.extractTestCasesFromFolder(folder)
+                TestsAndFoldersActions.allTestCasesInFolderIncludeSubfolders.clear()
+
+        for testCase in TestsAndFoldersActions.allTC:
+            formattedID = testCase.FormattedID
+            name = testCase.Name
+            preConditions = testCase.PreConditions
+            
+            inputs  = []
+            expecteds = []
+
+            list_steps = testCase.Steps
+            for i in list_steps:
+                inputs.append(i.Input)
+                expecteds.append(i.ExpectedResult)
+
+            listTestCases.append(TestCase(formattedID, name, preConditions, inputs, expecteds))
+
+        return listTestCases
+
 
     @staticmethod
     def extractFoldersFromRootFolder(rootFolder):
         listBars = []
-        folderNumber = 0
+        #folderNumber = 0
         #first iteration
         #if folder has testcases
         if len(rootFolder.TestCases) > 0:
-            folderNumber = folderNumber + 1
+            #folderNumber = folderNumber + 1
             TestsAndFoldersActions.extractTestCasesFromRootFolder(rootFolder)
             tcDict = TestsAndFoldersActions.prepareDict()
             listBars.append(BarClass(rootFolder.Name, rootFolder.FormattedID, tcDict["manual"], tcDict["automated"]))
@@ -27,7 +55,7 @@ class TestsAndFoldersActions():
 
         if len(rootFolder.Children) > 0:
             for folder in rootFolder.Children:
-                folderNumber = folderNumber + 1
+                #folderNumber = folderNumber + 1
                 TestsAndFoldersActions.extractTestCasesFromFolder(folder)
                 tcDict = TestsAndFoldersActions.prepareDict()
                 #listBars.append(BarClass(folderNumber, tcDict["manual"], tcDict["automated"], folder.Name))
