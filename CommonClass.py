@@ -38,6 +38,7 @@ class CommonClass():
     rootFolder = None
     tidyDataForCustomUserQuery = None
     testCasesFromUserQuery = None
+    allTestCasesForSaveIntoFile = None
 
     def login(self, server, login, password):
         self.user = UserCredential(server, login, password)
@@ -86,3 +87,11 @@ class CommonClass():
         specificTestCasesDict = TestsAndFoldersActions().getDataForCustomChartPie1(self.testCasesFromUserQuery, typeOfRequest)
 
         return specificTestCasesDict
+
+    def downloadAllTestCasesIntoFileForExtendedMode(self):
+        self.allTestCasesForSaveIntoFile = TestsAndFoldersActions().extractTestCasesFromFoldersAndSubfolders(self.rootFolder)
+        with open(r'C:\Temp2\New folder\DataVisualizationAndStatisticsForRally\Draft\listTestCases.data', 'w+b') as file:
+            pickle.dump(listTC, file)
+    
+    def getAllTestCasesForSaveIntoFile(self):
+        return self.allTestCasesForSaveIntoFile
