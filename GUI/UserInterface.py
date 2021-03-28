@@ -76,6 +76,27 @@ class UserInterface():
         self.rootFolderText.place(x = 100, y = 140, width=200)
         btnSetWorkspace = Button(master = tab, text = "Start session", command = self.startSession)
         btnSetWorkspace.place(x = 100, y = 160, width=200)
+
+        labelExtendedMode = Label(master = tab, text="Extended mode:")
+        labelExtendedMode.place(x = 0, y = 200, width=100)
+        checkBoxVar = IntVar()
+        checkBoxExtendedMode = Checkbutton(master = tab, text="Extended mode", variable=checkBoxVar)
+        checkBoxExtendedMode.place(x = 0, y = 220, width=100)
+        buttonLoadTestCases = Button(master = tab, text = "Download test cases from root folder", command = self.saveTestCasesIntoFile)
+        buttonLoadTestCases.place(x = 100, y = 240, width=200)
+
+        params = []
+        with open(r'C:\Users\User\Desktop\!temp') as my_file:
+            for line in my_file:
+                params.append(line)
+
+        self.serverText.insert(0, params[0])
+        self.userText.insert(0, params[1])
+        self.passwordText.insert(0, params[2])
+        self.workspaceText.insert(0, params[3])
+        self.projectText.insert(0, params[4])
+        self.rootFolderText.insert(0, params[5]) #TF15961 
+        self.queryText.insert(0, params[6])
     
     def createTab(self):
         if self.queryText.get() == "":
@@ -273,3 +294,6 @@ class UserInterface():
     def prepareAbsoluteValuesForChartPie(values):
         a  = numpy.round(values/100.*sizes.sum(), 0)
         return a
+        
+    def saveTestCasesIntoFile(self):
+        self.commonClass.downloadAllTestCasesIntoFileForExtendedMode()

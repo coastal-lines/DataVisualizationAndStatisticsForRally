@@ -11,21 +11,35 @@ class TestCase():
 
 listTC = []
 
+params = []
+with open(r'C:\Users\User\Desktop\!temp') as my_file:
+    for line in my_file:
+        params.append(line)
 
+server = params[0]
+user = params[1]
+password = params[2]
+workspace = params[4]
+project = params[5]
+#rootFolder = 'TF15963'
 
 rally = Rally(server=server, user=user, password=password)
 rally.setWorkspace(workspace)
 rally.setProject(project)
 
-query = 'FormattedID = %s'
-test_folder_req = rally.get('TestFolder', fetch=True, projectScopeDown=True, query=query % 'TF23805')
+query = 'FormattedID = "TF18772"'
+#query = 'FormattedID = "TF23805" AND FormattedID = "TF18607"'
+test_folder_req = rally.get('TestFolder', fetch=True, projectScopeDown=True, query=query)
 test_folder = test_folder_req.next()
 test_cases = test_folder.TestCases
 
+count = 0 #debug
 for tc in test_cases:
+    count = count + 1 #debug
+    print(str(count) + ": " + tc.Name) #debug
     formattedID = tc.FormattedID
     name = tc.Name
-    description = tc.Description
+    preConditions = tc.PreConditions
 
     inputs  = []
     expecteds = []
@@ -35,7 +49,7 @@ for tc in test_cases:
         inputs.append(i.Input)
         expecteds.append(i.ExpectedResult)
 
-    listTC.append(TestCase(formattedID, name, description, inputs, expecteds))
+    listTC.append(TestCase(formattedID, name, preConditions, inputs, expecteds))
 
 
 with open(r'C:\Temp2\New folder\DataVisualizationAndStatisticsForRally\Draft\listTestCases.data', 'w+b') as file:
