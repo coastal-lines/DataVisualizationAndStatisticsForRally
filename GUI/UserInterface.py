@@ -90,13 +90,13 @@ class UserInterface():
             for line in my_file:
                 params.append(line)
 
-        self.serverText.insert(0, params[0])
-        self.userText.insert(0, params[1])
-        self.passwordText.insert(0, params[2])
-        self.workspaceText.insert(0, params[3])
-        self.projectText.insert(0, params[4])
-        self.rootFolderText.insert(0, params[5]) #TF15961 
-        self.queryText.insert(0, params[6])
+        self.serverText.insert(0, params[0].rstrip())
+        self.userText.insert(0, params[1].rstrip())
+        self.passwordText.insert(0, params[2].rstrip())
+        self.workspaceText.insert(0, params[3].rstrip())
+        self.projectText.insert(0, params[4].rstrip())
+        self.rootFolderText.insert(0, params[5].rstrip()) #TF15961 
+        self.queryText.insert(0, params[6].rstrip())
     
     def createTab(self):
         if self.queryText.get() == "":
