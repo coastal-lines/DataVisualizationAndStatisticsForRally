@@ -9,6 +9,10 @@ class TestCase():
         self.inputs = inputs
         self.expecteds = expecteds
 
+with open(r'C:\Temp2\New folder\DataVisualizationAndStatisticsForRally\Draft\listTestCases.data', 'rb') as file:
+    l = pickle.load(file)
+    t=0
+
 listTC = []
 
 params = []
@@ -16,18 +20,18 @@ with open(r'C:\Users\User\Desktop\!temp') as my_file:
     for line in my_file:
         params.append(line)
 
-server = params[0]
-user = params[1]
-password = params[2]
-workspace = params[4]
-project = params[5]
+server = params[0].rstrip()
+user = params[1].rstrip()
+password = params[2].rstrip()
+workspace = params[3].rstrip()
+project = params[4].rstrip()
 #rootFolder = 'TF15963'
 
 rally = Rally(server=server, user=user, password=password)
 rally.setWorkspace(workspace)
 rally.setProject(project)
 
-query = 'FormattedID = "TF18772"'
+query = 'FormattedID = "TF16509"'
 #query = 'FormattedID = "TF23805" AND FormattedID = "TF18607"'
 test_folder_req = rally.get('TestFolder', fetch=True, projectScopeDown=True, query=query)
 test_folder = test_folder_req.next()
@@ -55,7 +59,8 @@ for tc in test_cases:
 with open(r'C:\Temp2\New folder\DataVisualizationAndStatisticsForRally\Draft\listTestCases.data', 'w+b') as file:
     pickle.dump(listTC, file)
 
-#with open(r'C:\Temp2\New folder\DataVisualizationAndStatisticsForRally\Draft\listTestCases.data', 'rb') as file:
- #   l = pickle.load(file)
+with open(r'C:\Temp2\New folder\DataVisualizationAndStatisticsForRally\Draft\listTestCases.data', 'rb') as file:
+    l = pickle.load(file)
+    t=0
 
 a = 0

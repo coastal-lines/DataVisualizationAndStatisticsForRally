@@ -1,4 +1,5 @@
 import requests
+import pickle
 from pyral import Rally, rallyWorkset
 import matplotlib.pyplot as plt
 from matplotlib import pylab
