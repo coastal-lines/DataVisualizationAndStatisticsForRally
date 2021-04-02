@@ -2,16 +2,18 @@ from pyral import Rally, rallyWorkset
 import pickle
 
 class TestCase():
-    def __init__(self, formattedID, name, preConditions, inputs, expecteds):
+    def __init__(self, formattedID, name, preConditions, productArea, productSubarea, method, testFolder, inputs, expecteds):
         self.formattedID = formattedID
         self.name = name
         self.preConditions = preConditions
+        self.project = project
+        self.productArea = productArea
+        self.productSubarea = productSubarea
+        self.method = method
+        self.testFolder = testFolder
         self.inputs = inputs
         self.expecteds = expecteds
 
-with open(r'C:\Temp2\New folder\DataVisualizationAndStatisticsForRally\Draft\listTestCases.data', 'rb') as file:
-    l = pickle.load(file)
-    t=0
 
 listTC = []
 
@@ -44,6 +46,10 @@ for tc in test_cases:
     formattedID = tc.FormattedID
     name = tc.Name
     preConditions = tc.PreConditions
+    productArea = tc.c_ProductArea
+    productSubarea = tc.c_ProductSubarea
+    method = tc.Method
+    testFolder = tc.TestFolder.Name
 
     inputs  = []
     expecteds = []
@@ -53,10 +59,11 @@ for tc in test_cases:
         inputs.append(i.Input)
         expecteds.append(i.ExpectedResult)
 
-    listTC.append(TestCase(formattedID, name, preConditions, inputs, expecteds))
+    listTC.append(TestCase(formattedID, name, preConditions, productArea, productSubarea, method, testFolder, inputs, expecteds))
 
 
-with open(r'C:\Temp2\New folder\DataVisualizationAndStatisticsForRally\Draft\listTestCases.data', 'w+b') as file:
+
+with open(r'C:\Temp2\New folder\DataVisualizationAndStatisticsForRally\Draft\listTestCases2.data', 'w+b') as file:
     pickle.dump(listTC, file)
 
 with open(r'C:\Temp2\New folder\DataVisualizationAndStatisticsForRally\Draft\listTestCases.data', 'rb') as file:
