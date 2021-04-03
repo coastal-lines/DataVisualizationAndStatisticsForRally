@@ -18,49 +18,94 @@ userTestCasesFromFile = None
 with open(r'C:\Temp2\New folder\DataVisualizationAndStatisticsForRally\Draft\listTestCases2.data', 'rb') as file:
     userTestCasesFromFile = pickle.load(file)
 
-query = '(Name contains "material")'
-query = '((Name contains "material") AND (PreConditions contains "subjec"))'
-what = None
-how = None
-where = None
+query = '(Name !contains "Flash")'
+#query = '((Name contains "material") AND (PreConditions contains "subjec"))'
 
 result = re.findall('\((.*?)\)', query)
 selectedUserTestCases = []
 
 userTestCasesFromFileCopy = userTestCasesFromFile.copy()
-#pre-removing test cases
-for query in result:
-    what = query.split()[0]
-    action =  query.split()[1]
-    text = query.split()[2]
-    if(action == "!contains" or action == "!="):
-        removeTestCasesFromList()
 
 def removeTestCasesFromList(what, text):
     for tc in userTestCasesFromFile:
         if what == "Name":
-            pass
+            for tc in userTestCasesFromFileCopy:
+                if text in tc.name:
+                    index = userTestCasesFromFileCopy.index(tc)
+                    userTestCasesFromFileCopy.pop(index)
+                break
+            break
         elif what == "PreCondition":
-            pass
+            for tc in userTestCasesFromFileCopy:
+                if text in tc.preConditions:
+                    index = userTestCasesFromFileCopy.index(tc)
+                    userTestCasesFromFileCopy.pop(index)
+                break
         elif what == "Project":
-            pass
-        elif what == "":
-            pass
-        elif what == "":
-            pass
-        elif what == "":
-            pass
-        elif what == "":
-            pass
-        elif what == "":
-            pass
-        elif what == "":
-            pass
+            for tc in userTestCasesFromFileCopy:
+                if text in tc.project:
+                    index = userTestCasesFromFileCopy.index(tc)
+                    userTestCasesFromFileCopy.pop(index)
+                break
+            break
+        elif what == "ProductArea":
+            for tc in userTestCasesFromFileCopy:
+                if text in tc.productArea:
+                    index = userTestCasesFromFileCopy.index(tc)
+                    userTestCasesFromFileCopy.pop(index)
+                break
+            break
+        elif what == "ProductSubarea":
+            for tc in userTestCasesFromFileCopy:
+                if text in tc.productSubarea:
+                    index = userTestCasesFromFileCopy.index(tc)
+                    userTestCasesFromFileCopy.pop(index)
+                break
+            break
+        elif what == "Method":
+            for tc in userTestCasesFromFileCopy:
+                if text in tc.method:
+                    index = userTestCasesFromFileCopy.index(tc)
+                    userTestCasesFromFileCopy.pop(index)
+                break
+            break
+        elif what == "TestFolder":
+            for tc in userTestCasesFromFileCopy:
+                if text in tc.testFolder:
+                    index = userTestCasesFromFileCopy.index(tc)
+                    userTestCasesFromFileCopy.pop(index)
+                break
+            break
+        elif what == "Inputs":
+            for tc in userTestCasesFromFileCopy:
+                for input in tc.inputs:
+                    if text in input:
+                        index = userTestCasesFromFileCopy.index(tc)
+                        userTestCasesFromFileCopy.pop(index)
+                break
+            break
+        elif what == "ExpectedResults":
+            for tc in userTestCasesFromFileCopy:
+                for expected in tc.expecteds:
+                    if text in expected:
+                        index = userTestCasesFromFileCopy.index(tc)
+                        userTestCasesFromFileCopy.pop(index)
+                break
+            break
+
+#pre-removing test cases
+for query in result:
+    what = query[0].split()[0].replace('(', '').replace(')', '')
+    action =  query.split()[1]
+    text = query.split()[2].replace('"', '')
+    if(action == "!contains" or action == "!="):
+        removeTestCasesFromList(what, text)
+
 
 for query in result:
     what = query.split()[0]
     action =  query.split()[1]
-    text = query.split()[2]
+    text = query.split()[2].replace('"', '')
 
 
 
