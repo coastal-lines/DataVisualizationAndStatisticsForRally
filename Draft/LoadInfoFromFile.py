@@ -1,8 +1,26 @@
 import pickle
 import re
+import requests
+from pyral import Rally, rallyWorkset
+import matplotlib.pyplot as plt
+from matplotlib import pylab
+import seaborn as sns
+from pylab import *
+from matplotlib.ticker import MaxNLocator
+import mplcursors
+import pandas as pd
+from Project.RallyCommonObject import RallyCommonObject
+from Project.UserCredential import UserCredential
+from Project.RallyInstance import RallyInstance
+from Project.RallyFolder import RallyFolder
+from Project.RallyWorkspace import RallyWorkspace
+from Visualization.UserDataObjects.BarClass import BarClass
+from Visualization.TestsAndFoldersActions import TestsAndFoldersActions
+from Visualization.DataFrameActions import DataFrameActions
 
 class TestCase():
-    def __init__(self, formattedID, name, preConditions, productArea, productSubarea, method, testFolder, inputs, expecteds):
+    def __init__(self, rootFolderName, formattedID, name, preConditions, productArea, productSubarea, method, testFolder, inputs, expecteds):
+        self.rootFolderName = rootFolderName
         self.formattedID = formattedID
         self.name = name
         self.preConditions = preConditions
@@ -143,3 +161,17 @@ for query in result:
                         selectedUserTestCases.append(tc)
                     break
 
+#перед подготовкой bars нужно собрать инфу про найденные кейсы
+#находим номера кейсов
+#далее находим parent
+#далее алгоритм как для остальных запросов
+
+#get response with User's query
+#self.testCasesFromUserQuery = self.rally.get('TestCase', fetch = True, projectScopeDown = True, query = query)
+
+#get root test folders according the main root folder
+rootFolder = RallyFolder(self.rally ,'FormattedID = "' + rootFolderFormattedID + '"').testFolder
+listRootSubfolders = rootFolder.Children
+
+bars = TestsAndFoldersActions().getCustomUserRequest(self.testCasesFromUserQuery, listRootSubfolders)
+tidyDataForCustomUserQuery = DataFrameActions.PrepareDataFrame(bars)
