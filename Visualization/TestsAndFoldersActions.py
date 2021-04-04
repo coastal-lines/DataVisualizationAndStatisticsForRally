@@ -26,6 +26,12 @@ class TestsAndFoldersActions():
             formattedID = testCase.FormattedID
             name = testCase.Name
             preConditions = testCase.PreConditions
+            mainFolderName = 
+            rootFolderName = commonClass.getRootFolderName()
+            productArea = testCase.c_ProductArea
+            productSubarea = testCase.c_ProductSubarea
+            method = testCase.Method
+            testFolder = testCase.TestFolder.Name
             
             inputs  = []
             expecteds = []
