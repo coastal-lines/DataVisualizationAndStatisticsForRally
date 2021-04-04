@@ -4,7 +4,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>1286b2fe-c399-4236-9d98-9e4c5142e89e</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>Draft\LoadInfoFromFile.py</StartupFile>
+    <StartupFile>MainClass.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -27,6 +27,7 @@
     <Compile Include="Draft\LoadInfoFromFile.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Draft\SaveTestCasesIntoFile - Copy.py" />
     <Compile Include="Draft\SaveTestCasesIntoFile.py">
       <SubType>Code</SubType>
     </Compile>

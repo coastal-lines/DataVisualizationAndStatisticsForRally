@@ -91,8 +91,9 @@ class CommonClass():
 
     def downloadAllTestCasesIntoFileForExtendedMode(self):
         self.allTestCasesForSaveIntoFile = TestsAndFoldersActions().extractTestCasesFromFoldersAndSubfolders(self.rootFolder)
-        with open(r'C:\Temp2\New folder\DataVisualizationAndStatisticsForRally\Draft\listTestCases.data', 'w+b') as file:
-            pickle.dump(listTC, file)
+        with open(r'C:\Temp2\New folder\DataVisualizationAndStatisticsForRally\Draft\allTestCasesForSaveIntoFile.data', 'w+b') as file:
+            pickle.dump(self.allTestCasesForSaveIntoFile, file)
+        print("Test cases were saved")
     
     def getAllTestCasesForSaveIntoFile(self):
         return self.allTestCasesForSaveIntoFile
