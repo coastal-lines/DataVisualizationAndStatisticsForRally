@@ -26,12 +26,24 @@ class TestsAndFoldersActions():
             formattedID = testCase.FormattedID
             name = testCase.Name
             preConditions = testCase.PreConditions
-            mainFolderName = 
-            rootFolderName = commonClass.getRootFolderName()
+            rootFolderName = rootFolder.Name
+            project = testCase.Project.Name
             productArea = testCase.c_ProductArea
             productSubarea = testCase.c_ProductSubarea
             method = testCase.Method
             testFolder = testCase.TestFolder.Name
+
+            mainFolderName = ""
+            for rootFolder in rootFolder.Children:
+                if testCase.TestFolder.Name == rootFolder.Name:
+                    mainFolderName = rootFolder.Name
+                    break
+                elif testCase.TestFolder.Parent.Name == rootFolder.Name:
+                    mainFolderName = testCasec.TestFolder.Parent.Name
+                    break
+                else:
+                    tf = testCase.TestFolder.Parent
+                    mainFolderName = TestsAndFoldersActions.getParentName(tf, rootFolder.Name)
             
             inputs  = []
             expecteds = []
@@ -41,7 +53,12 @@ class TestsAndFoldersActions():
                 inputs.append(i.Input)
                 expecteds.append(i.ExpectedResult)
 
-            listTestCases.append(TestCase(formattedID, name, preConditions, inputs, expecteds))
+            if testCase.Name.find("AUTOMATED") != -1 or testCase.Name.find("Automated") != -1:
+                isAutomated = True
+            else:
+                isAutomated = False
+
+            listTestCases.append(TestCase(formattedID, name, preConditions, inputs, expecteds, mainFolderName, rootFolderName, project, productArea, productSubarea, method, testFolder, isAutomated))
 
         return listTestCases
 
