@@ -12,6 +12,7 @@ class TestsAndFoldersActions():
     @staticmethod
     def extractTestCasesFromFoldersAndSubfolders(rootFolder):
         listTestCases = []
+        TestsAndFoldersActions.allTC = None #Debug?
 
         if len(rootFolder.TestCases) > 0:
             TestsAndFoldersActions.extractTestCasesFromRootFolder(rootFolder)
@@ -142,6 +143,9 @@ class TestsAndFoldersActions():
     def getCustomUserRequest(testCasesFromUserQuery, listRootSubfolders):
         #extract test cases from response
         #listTC = []
+
+        TestsAndFoldersActions.listTC.clear()
+
         for number in range(testCasesFromUserQuery.resultCount):
             TestsAndFoldersActions.listTC.append(testCasesFromUserQuery.next())
 

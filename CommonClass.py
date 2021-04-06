@@ -97,3 +97,6 @@ class CommonClass():
     
     def getAllTestCasesForSaveIntoFile(self):
         return self.allTestCasesForSaveIntoFile
+
+    def clearTestCasesFromUserQueryList(self):
+        self.testCasesFromUserQuery = None
