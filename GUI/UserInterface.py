@@ -180,6 +180,7 @@ class UserInterface():
         fig.suptitle(self.rootFolderName)
 
         #get tidy data
+        self.commonClass.clearTestCasesFromUserQueryList()
         self.tidy = self.commonClass.getTidyData()
         self.unTidy = self.commonClass.getUntidyData()
 
