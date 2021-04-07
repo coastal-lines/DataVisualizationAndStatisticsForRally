@@ -66,6 +66,12 @@ class TestsAndFoldersActions():
 
     @staticmethod
     def extractFoldersFromRootFolder(rootFolder):
+        #DEBUG!!!
+        if len(TestsAndFoldersActions.allTC) > 0:
+            TestsAndFoldersActions.allTC.clear()
+        if len(TestsAndFoldersActions.allTC) > 0:
+            TestsAndFoldersActions.listTC.clear()
+
         listBars = []
         #folderNumber = 0
         #first iteration

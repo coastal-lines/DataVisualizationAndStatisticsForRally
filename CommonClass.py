@@ -100,3 +100,5 @@ class CommonClass():
 
     def clearTestCasesFromUserQueryList(self):
         self.testCasesFromUserQuery = None
+        t=0
+        u=0
