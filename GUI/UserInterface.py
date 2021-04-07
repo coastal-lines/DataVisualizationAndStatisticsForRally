@@ -105,6 +105,8 @@ class UserInterface():
             self.createCustomTab()
 
     def createCustomTab(self):
+        self.commonClass.clearTestCasesFromUserQueryList()
+
         query = self.queryText.get()
         tidy = self.commonClass.getCustomUserRequest(query, self.rootFolderText.get())
 
@@ -152,6 +154,7 @@ class UserInterface():
         
         self.createQueryPanel(tab)
         #self.tempCreate(tab)
+        self.commonClass.clearTestCasesFromUserQueryList()
 
     def createDefaultTab(self):
         self.tabCount = self.tabCount + 1
@@ -209,6 +212,7 @@ class UserInterface():
         toolbar.place(x = 0, y = 780)
 
         mplcursors.cursor(ax, hover=False).connect("add", lambda sel: sel.annotation.set_text(self.openNextTabByUserSelecting(sel.target.index)))
+        self.commonClass.clearTestCasesFromUserQueryList()
 
     def login(self):
         self.commonClass.login(self.serverText.get(), self.userText.get(), self.passwordText.get())
